@@ -25,12 +25,26 @@
 
 package org.mockito.kotlin
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.runBlocking
 import org.mockito.MockedStatic
 import org.mockito.stubbing.OngoingStubbing
 import org.mockito.verification.VerificationMode
 
+/**
+ * Alias for [MockedStatic.when].
+ */
 fun <S, T> MockedStatic<T>.whenever(verification: () -> S): OngoingStubbing<S> =
     `when` { verification() }
+
+/**
+ * Enables stubbing suspending static methods.
+ *
+ * Warning: Only one method call can be stubbed in the function.
+ * other method calls are ignored!
+ */
+fun <S, T> MockedStatic<T>.wheneverBlocking(verification: suspend CoroutineScope.() -> S): OngoingStubbing<S> =
+    `when` { runBlocking { verification() } }
 
 /**
  * Syntax sugar to enable [SAM conversion syntax](https://kotlinlang.org/docs/java-interop.html#sam-conversions)

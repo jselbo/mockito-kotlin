@@ -517,6 +517,15 @@ class CoroutinesTest {
             }
         }
     }
+
+    @Test
+    fun mockedStaticStubbing() = runBlocking {
+        mockStatic<SomeObject>().use { mockedStatic ->
+            mockedStatic.wheneverBlocking { SomeObject.getMessage() }.thenReturn("stubbed")
+
+            expect(SomeObject.getMessage()).toBe("stubbed")
+        }
+    }
 }
 
 interface SomeInterface {
@@ -533,5 +542,12 @@ open class SomeClass {
     open suspend fun delaying() = withContext(Dispatchers.Default) {
         delay(100)
         42
+    }
+}
+
+object SomeObject {
+    @JvmStatic
+    suspend fun getMessage(): String = withContext(Dispatchers.Default) {
+        "unstubbed"
     }
 }
