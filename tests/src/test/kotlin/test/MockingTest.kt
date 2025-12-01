@@ -16,6 +16,7 @@ import org.mockito.Mockito
 import org.mockito.exceptions.verification.WantedButNotInvoked
 import org.mockito.invocation.DescribedInvocation
 import org.mockito.kotlin.argumentCaptor
+import org.mockito.kotlin.ext.whenever
 import org.mockito.kotlin.mockConstruction
 import org.mockito.kotlin.mockStatic
 import org.mockito.listeners.InvocationListener

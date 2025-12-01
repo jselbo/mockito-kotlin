@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-package org.mockito.kotlin
+package org.mockito.kotlin.ext
 
 import org.mockito.MockedStatic
 import org.mockito.stubbing.OngoingStubbing

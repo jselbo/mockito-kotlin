@@ -3,7 +3,7 @@ package test
 import org.junit.Test
 import org.mockito.Mockito.mockStatic
 import org.mockito.kotlin.times
-import org.mockito.kotlin.verify
+import org.mockito.kotlin.ext.verify
 
 class MockedStaticTest : TestBase() {
 
